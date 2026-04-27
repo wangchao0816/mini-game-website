@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Game Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">🎮 Mini Games</a>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link active">首页</a></li>
+        <li><a href="#games" class="nav-link">游戏</a></li>
+        <li><a href="#about" class="nav-link">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 首页区域 -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>经典小游戏</h1>
+      <p>重温经典，享受纯粹的游戏乐趣。选择一个游戏开始吧！</p>
+    </div>
+  </section>
+
+  <!-- 游戏选择区域 -->
+  <section id="games" class="games-section">
+    <h2 class="section-title">选择游戏</h2>
+    <div class="games-grid">
+      <!-- 贪吃蛇游戏卡片 -->
+      <div class="game-card" data-game="snake">
+        <div class="game-card-header">
+          <span class="game-icon">🐍</span>
+          <h3>贪吃蛇</h3>
+        </div>
+        <p class="game-desc">经典贪吃蛇游戏，使用方向键控制蛇移动，吃到食物来增长身体和得分。</p>
+        <div class="game-meta">
+          <span>🎯 键盘</span>
+          <span>⏱ 无限</span>
+        </div>
+        <button class="btn btn-play" onclick="showGame('snake')">开始游戏</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 游戏界面（初始隐藏） -->
+  <section id="game-area" class="game-area" style="display:none;">
+    <div class="game-container">
+      <div class="game-header">
+        <h2 id="current-game-title">贪吃蛇</h2>
+        <div class="score-board">
+          <div class="score-item">
+            <span class="score-label">分数</span>
+            <span id="score" class="score-value">0</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">最高分</span>
+            <span id="high-score" class="score-value">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-wrapper">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-content">
+            <h3 id="overlay-title">🐍 贪吃蛇</h3>
+            <p id="overlay-message">按「开始游戏」或空格键开始</p>
+            <button id="overlay-btn" class="btn btn-primary" onclick="startGame()">开始游戏</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-controls">
+        <button class="btn btn-primary" id="btn-start" onclick="startGame()">开始游戏</button>
+        <button class="btn btn-secondary" id="btn-pause" onclick="togglePause()" disabled>暂停</button>
+        <button class="btn btn-danger" id="btn-restart" onclick="restartGame()">重新开始</button>
+        <button class="btn btn-back" onclick="hideGame()">返回选单</button>
+      </div>
+
+      <div class="game-instructions">
+        <h4>操作说明</h4>
+        <p>↑ ↓ ← → 或 W A S D 控制方向 | 空格键 暂停/继续</p>
+      </div>
+
+      <!-- 移动端触控按钮 -->
+      <div class="mobile-controls">
+        <div class="control-row">
+          <button class="ctrl-btn" ontouchstart="setDirection('up')" onmousedown="setDirection('up')">↑</button>
+        </div>
+        <div class="control-row">
+          <button class="ctrl-btn" ontouchstart="setDirection('left')" onmousedown="setDirection('left')">←</button>
+          <button class="ctrl-btn" ontouchstart="toggleGame()" onmousedown="toggleGame()">⏯</button>
+          <button class="ctrl-btn" ontouchstart="setDirection('right')" onmousedown="setDirection('right')">→</button>
+        </div>
+        <div class="control-row">
+          <button class="ctrl-btn" ontouchstart="setDirection('down')" onmousedown="setDirection('down')">↓</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于区域 -->
+  <section id="about" class="about-section">
+    <h2 class="section-title">关于本站</h2>
+    <p>一个使用 HTML5、CSS3 和 JavaScript 构建的纯前端小游戏合集。所有游戏均在浏览器端运行，无需任何后端支持。</p>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>&copy; 2026 Mini Game Website. Made with ❤️</p>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
